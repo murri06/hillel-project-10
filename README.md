@@ -1,6 +1,6 @@
-# Project 09 for Hillel 
-A script which uses package symfony/serializer to show ability to
-serialize object as JSON and deserialize it as object
+# Project 10 for Hillel 
+Form generator which receiving data from existing form and creating 
+different elements of the form 
 
 to use it, clone the repo and use command <br>
 `docker compose up --build`

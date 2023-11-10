@@ -2,10 +2,10 @@
 
 namespace App;
 
-class Button extends FormElement
+class RadioButton extends FormElement
 {
 
-    public function render(): string
+    public function render(): string|bool
     {
         if ($this->number <= 0) {
             return false;
@@ -13,9 +13,8 @@ class Button extends FormElement
         $render = '';
         $names = $this->nameSplit($this->names);
         foreach ($names as $object) {
-            $render .= "<button name='$object'>$object</button><br>";
+            $render .= "<input type='radio' name='radio' value='$object'>$object<br>";
         }
         return $render;
     }
-
 }

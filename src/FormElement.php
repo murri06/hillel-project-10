@@ -13,11 +13,14 @@ abstract class FormElement
 
     protected function nameSplit(string $name): array
     {
+        if ($this->number === 0) {
+            return [];
+        }
         return explode(',', $name);
     }
 
-    protected function validate(array $name, int $number): bool
+    public function validate(): bool
     {
-        return count($name) === $number;
+        return count($this->nameSplit($this->names)) === $this->number;
     }
 }

@@ -2,20 +2,20 @@
 
 namespace App;
 
-class Button extends FormElement
+class Selector extends FormElement
 {
 
-    public function render(): string
+    public function render(): string|bool
     {
         if ($this->number <= 0) {
             return false;
         }
-        $render = '';
+        $render = '<select>';
         $names = $this->nameSplit($this->names);
         foreach ($names as $object) {
-            $render .= "<button name='$object'>$object</button><br>";
+            $render .= "<option value='$object'>$object<br>";
         }
+        $render .= '</select> <br>';
         return $render;
     }
-
 }
