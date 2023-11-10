@@ -2,18 +2,14 @@
 
 namespace App;
 
-class RadioButton extends FormElement
+class RadioButton extends InputElement
 {
 
-    public function render(): string|bool
+    public function render(): string
     {
-        if ($this->number <= 0) {
-            return false;
-        }
         $render = '';
-        $names = $this->nameSplit($this->names);
-        foreach ($names as $object) {
-            $render .= "<label><input type='radio' name='radio' value='$object'>$object</label><br>";
+        foreach ($this->arrayNames as $object) {
+            $render .= "<label><input type='radio' name='radio' value='$object'>$object</label>";
         }
         return $render;
     }

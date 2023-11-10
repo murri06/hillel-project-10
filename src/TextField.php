@@ -2,19 +2,14 @@
 
 namespace App;
 
-class TextField extends FormElement
+class TextField extends InputElement
 {
 
     public function render(): string
     {
-        if ($this->number <= 0) {
-            return false;
-        }
         $render = '';
-        $names = $this->nameSplit($this->names);
-
-        foreach ($names as $object) {
-            $render .= "<label >$object : <input type='text' name='$object'></label> <br>";
+        foreach ($this->arrayNames as $object) {
+            $render .= "<label>$object : <input type='text' name='$object'></label>";
         }
         return $render;
     }

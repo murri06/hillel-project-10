@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/vendor/autoload.php";
 
-use App\FormGenerator;
+use App\{FormGenerator, RadioButton, Selector, Button, TextField, CheckBox};
 
 if (isset($_POST['submit'])) {
     $numberButtons = filter_input(INPUT_POST, 'numberButtons', FILTER_SANITIZE_NUMBER_INT);
@@ -14,8 +14,13 @@ if (isset($_POST['submit'])) {
     $namesCheckBox = filter_input(INPUT_POST, 'namesCheckBox', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $namesOptions = filter_input(INPUT_POST, 'namesOptions', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $namesRadio = filter_input(INPUT_POST, 'namesRadio', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $form = new FormGenerator($numberText, $namesText, $numberButtons, $namesButtons, $numberRadio,
-        $namesRadio, $numberOptions, $namesOptions, $numberCheckbox, $namesCheckBox);
+
+    $form = new FormGenerator();
+    $form->addElement(new TextField($numberText, $namesText));
+    $form->addElement(new RadioButton($numberRadio, $namesRadio));
+    $form->addElement(new CheckBox($numberCheckbox, $namesCheckBox));
+    $form->addElement(new Selector($numberOptions, $namesOptions));
+    $form->addElement(new Button($numberButtons, $namesButtons));
 }
 ?>
 
@@ -58,7 +63,7 @@ if (isset($_POST['submit'])) {
             Тут буде відображена <br> згенерована форма
         </h2>
         <?php if (isset($form)) {
-            echo $form->constructForm();
+            echo $form->render();
         } ?>
     </div>
 </main>

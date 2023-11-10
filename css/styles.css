@@ -11,6 +11,6 @@ div {
     justify-content: center;
 }
 
-input {
+input, select {
     margin-bottom: 10px;
 }

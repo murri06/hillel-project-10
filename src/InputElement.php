@@ -2,14 +2,14 @@
 
 namespace App;
 
-abstract class FormElement
+abstract class InputElement extends BaseElement
 {
+    protected array $arrayNames = [];
 
-    public function __construct(protected readonly int $number, protected readonly string $names)
+    public function __construct(protected int $number, protected string $names)
     {
+        $this->arrayNames = $this->nameSplit($names);
     }
-
-    abstract public function render(): string|bool;
 
     protected function nameSplit(string $name): array
     {
@@ -21,6 +21,9 @@ abstract class FormElement
 
     public function validate(): bool
     {
+        if ($this->number <= 0) {
+            return false;
+        }
         return count($this->nameSplit($this->names)) === $this->number;
     }
 }

@@ -2,18 +2,14 @@
 
 namespace App;
 
-class CheckBox extends FormElement
+class CheckBox extends InputElement
 {
 
-    public function render(): string|bool
+    public function render(): string
     {
-        if ($this->number <= 0) {
-            return false;
-        }
         $render = '';
-        $names = $this->nameSplit($this->names);
-        foreach ($names as $object) {
-            $render .= "<label><input type='checkbox' name='$object' value='$object'>$object</label><br>";
+        foreach ($this->arrayNames as $object) {
+            $render .= "<label><input type='checkbox' name='$object' value='$object'>$object</label>";
         }
         return $render;
     }
