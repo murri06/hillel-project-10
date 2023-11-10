@@ -14,7 +14,7 @@ class TextField extends FormElement
         $names = $this->nameSplit($this->names);
 
         foreach ($names as $object) {
-            $render .= " <input type='text' name='$object' placeholder='$object'><br>";
+            $render .= "<label >$object : <input type='text' name='$object'></label> <br>";
         }
         return $render;
     }

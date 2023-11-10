@@ -11,26 +11,29 @@ readonly class FormGenerator
                                 private string $namesButtons = '',
                                 private int    $radioButtons = 0,
                                 private string $radioButtonsNames = '',
-                                private int    $selectors = 0,
-                                private string $options = '')
+                                private int    $numberOptions = 0,
+                                private string $options = '',
+                                private int    $numberCheckBox = 0,
+                                private string $namesCheckBox = '')
     {
     }
 
-    public function construct(): string
+    public function constructForm(): string
     {
         $buttons = new Button($this->buttons, $this->namesButtons);
         $textFields = new TextField($this->textFields, $this->textFieldsNames);
         $radioButtons = new RadioButton($this->radioButtons, $this->radioButtonsNames);
-        $selector = new Selector($this->selectors, $this->options);
+        $selector = new Selector($this->numberOptions, $this->options);
+        $checkBox = new CheckBox($this->numberCheckBox, $this->namesCheckBox);
 
-        if ($buttons->validate() && $textFields->validate() && $radioButtons->validate() && $selector->validate()) {
+        if ($buttons->validate() && $textFields->validate() && $radioButtons->validate() && $selector->validate() && $checkBox->validate()) {
             $construct = '<form method="post"> ';
-            $construct .= $textFields->render() . $radioButtons->render() . $selector->render() . $buttons->render();
+            $construct .= $textFields->render() . $radioButtons->render() . $selector->render() . $checkBox->render() . $buttons->render();
             $construct .= '</form>';
             return $construct;
         }
 
-        return 'Wrong arguments!';
+        return 'Аргументи були введені невірно!';
     }
 
 }

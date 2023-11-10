@@ -13,7 +13,7 @@ class RadioButton extends FormElement
         $render = '';
         $names = $this->nameSplit($this->names);
         foreach ($names as $object) {
-            $render .= "<input type='radio' name='radio' value='$object'>$object<br>";
+            $render .= "<label><input type='radio' name='radio' value='$object'>$object</label><br>";
         }
         return $render;
     }
